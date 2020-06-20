@@ -17,7 +17,6 @@ const ContactsScreen = () => {
                 <Text>
                     This is contacts Screen
             </Text>
-
             </View>
         </>
     );
