@@ -10,7 +10,7 @@ import {
     Text
 } from 'react-native';
 
-const loadingScreen = () => {
+const LoadingScreen = () => {
     return (
         <>
             <View>
@@ -26,4 +26,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default loadingScreen;
+export default LoadingScreen;

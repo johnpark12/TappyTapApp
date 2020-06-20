@@ -10,7 +10,7 @@ import {
     Text
 } from 'react-native';
 
-const contactsScreen = () => {
+const ContactsScreen = () => {
     return (
         <>
             <View>
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default contactsScreen;
+export default ContactsScreen;
