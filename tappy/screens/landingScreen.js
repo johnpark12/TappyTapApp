@@ -6,7 +6,8 @@ import {
     FlatList,
     Text,
     Dimensions,
-    Image
+    Image,
+    TouchableWithoutFeedback
 } from 'react-native';
 import Card from '../components/Card'
 import data from '../data/contacts.json';
@@ -29,7 +30,7 @@ const icons = [
 
 
 export default class LandingScreen extends React.Component {
-    constructor() {
+    constructor({ navigation }) {
         super();
         this.recents = React.createRef();
         this.taps = React.createRef();
@@ -39,6 +40,7 @@ export default class LandingScreen extends React.Component {
             scrollIndex: 0,
             selectedIcon: 0
         };
+        this.navigation = navigation;
     }
 
     onViewableItemsChanged = ({ viewableItems, changed }) => {
@@ -46,14 +48,11 @@ export default class LandingScreen extends React.Component {
     }
 
     onViewableItemsChanged2 = ({ viewableItems, changed }) => {
-        if (viewableItems[0]) {
+        if (viewableItems.length !== 0) {
             this.setState({ selectedIcon: viewableItems[0].index })
-            console.log(viewableItems);
-        }
-        else {
-
         }
     }
+
 
     render() {
         return (
@@ -93,7 +92,7 @@ export default class LandingScreen extends React.Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         pagingEnabled
-                        snapToInterval={vw * 0.3 + 2 * vw / 28}
+                        snapToInterval={vw * 0.25 + 2 * vw / 20}
                         snapToAlignment="center"
                         decelerationRate={"fast"}
                         renderItem={({ item, index }) =>
@@ -108,6 +107,17 @@ export default class LandingScreen extends React.Component {
                     />
                 </View>
                 <View style={styles.tabContainer}>
+                    <View style={styles.iconContainer}>
+                        <Image source={require("../assests/home_icon_selected.png")} />
+                    </View>
+                    <View style={styles.iconContainer}>
+                        <TouchableWithoutFeedback onPress={() => this.navigation.navigate("ContactsScreen")} >
+                            <Image source={require("../assests/contacts_icon.png")} />
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <View style={styles.iconContainer}>
+                        <Image source={require("../assests/settings_icon.png")} />
+                    </View>
 
                 </View>
             </View>
@@ -122,14 +132,24 @@ const styles = StyleSheet.create({
         backgroundColor: "#121212"
     },
     contactsContainer: {
-        height: vh / 1.8,
+        height: vh * 0.55,
+    },
+    tapsContainer: {
+        justifyContent: "center"
     },
     taps: {
-        height: vh / 4.5,
+        height: vh * 0.2,
+
     },
     tabContainer: {
-        height: vh * 0.2,
-        backgroundColor: "#ffffff"
+        height: vh * 0.1,
+        flexDirection: 'row',
+        justifyContent: "space-evenly",
+    },
+    iconContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     cardsList: {
         alignItems: 'center'

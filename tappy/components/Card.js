@@ -43,14 +43,14 @@ const Card = ({ contact, index, end, selected, userPhoto }) => {
     return (
         <View>
             {isBegin &&
-                <View style={[styles.card, { margin: vw / 20, marginTop: vw / 20 + marginAdd, marginLeft: vw / (2 * 8 / 3), height }]}>
+                <View style={[styles.card, { marginHorizontal: vw / 20, marginTop: marginAdd, marginLeft: vw / (2 * 8 / 3), height }]}>
                     {getContent()}
                 </View>}
             {isEnd &&
-                <View style={[styles.card, { margin: vw / 20, marginTop: vw / 20 + marginAdd, marginRight: vw / (2 * 8 / 3), height }]}>
+                <View style={[styles.card, { marginHorizontal: vw / 20, marginTop: marginAdd, marginRight: vw / (2 * 8 / 3), height }]}>
                     {getContent()}
                 </View>}
-            {!isBegin && !isEnd && <View style={[styles.card, { margin: vw / 20, marginTop: vw / 20 + marginAdd, height }]}>
+            {!isBegin && !isEnd && <View style={[styles.card, { marginHorizontal: vw / 20, marginTop: marginAdd, height }]}>
                 {getContent()}
             </View>}
         </View>

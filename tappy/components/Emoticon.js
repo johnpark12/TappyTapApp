@@ -12,7 +12,6 @@ const vh = Dimensions.get('window').height;
 const Emoticon = ({ index, end, selected, emoticon }) => {
     const isBegin = (index === 0);
     const isEnd = (index === end);
-    console.log(index);
     const iconStyle = index === selected ? emoticon[1] : emoticon[0]
     return (
         <>
@@ -26,22 +25,22 @@ const Emoticon = ({ index, end, selected, emoticon }) => {
 
 const styles = StyleSheet.create({
     center: {
-        height: vw * 0.3,
-        width: vw * 0.3,
-        marginHorizontal: vw / 28
+        height: vw * 0.25,
+        width: vw * 0.25,
+        marginHorizontal: vw / 20
     },
     left: {
-        height: vw * 0.3,
-        width: vw * 0.3,
-        marginHorizontal: vw / 28,
-        marginLeft: vw * 0.7 * 0.5
+        height: vw * 0.25,
+        width: vw * 0.25,
+        marginHorizontal: vw / 20,
+        marginLeft: vw * 0.75 * 0.5
 
     },
     right: {
-        height: vw * 0.3,
-        width: vw * 0.3,
-        marginHorizontal: vw / 28,
-        marginRight: vw * 0.7 * 0.5
+        height: vw * 0.25,
+        width: vw * 0.25,
+        marginHorizontal: vw / 20,
+        marginRight: vw * 0.75 * 0.5
 
     },
 

@@ -12,13 +12,12 @@ import {
 
 const ContactsScreen = () => {
     return (
-        <>
-            <View>
-                <Text>
-                    This is contacts Screen
+        <View>
+            <Text>
+                This is contacts Screen
             </Text>
-            </View>
-        </>
+        </View>
+
     );
 };
 
