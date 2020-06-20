@@ -10,13 +10,14 @@ import {
     Text
 } from 'react-native';
 
-const loadingScreen = () => {
+const contactsScreen = () => {
     return (
         <>
             <View>
                 <Text>
-                    This is loading Screen
-                </Text>
+                    This is contacts Screen
+            </Text>
+
             </View>
         </>
     );
@@ -26,4 +27,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default loadingScreen;
+export default contactsScreen;

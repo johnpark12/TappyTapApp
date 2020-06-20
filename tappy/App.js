@@ -1,26 +1,21 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigationBuilder } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native';
-
-
+import contactsScreen from './screens/contactsScreen';
+import landingScreen from './screens/landingScreen';
+import loadingScreen from './screens/loadingScreen';
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <>
-      <View>
-        <Text> This is the app.js</Text>
-      </View>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="landingScreen">
+        <Stack.Screen name="landingScreen" component={landingScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="contactScreen" component={contactsScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="loadingScreen" component={loadingScreen} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default App;
