@@ -1,4 +1,5 @@
 import React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
     StyleSheet,
     View,
@@ -35,12 +36,35 @@ export default class LandingScreen extends React.Component {
         this.recents = React.createRef();
         this.taps = React.createRef();
         this.state = {
-            friendList: data.friend_list,
-            history: data.history,
+            data: {},
             scrollIndex: 0,
             selectedIcon: 0
         };
         this.navigation = navigation;
+        // this.storeData(data);
+        this.getData();
+    }
+
+    storeData = async (value) => {
+        try {
+            const jsonValue = JSON.stringify(value)
+            //console.log(jsonValue);
+            await AsyncStorage.setItem('data', jsonValue)
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    getData = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('data')
+            if (jsonValue != null) {
+                this.setState({ data: JSON.parse(jsonValue) })
+            };
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     onViewableItemsChanged = ({ viewableItems, changed }) => {
@@ -55,56 +79,60 @@ export default class LandingScreen extends React.Component {
 
 
     render() {
+
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" backgroundColor="#121212" />
-                <View style={styles.contactsContainer}>
-                    <Text style={styles.title}>Recents</Text>
-                    <FlatList
-                        ref={this.recents}
-                        style={styles.cardList}
-                        data={this.state.friendList}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        pagingEnabled
-                        snapToInterval={vw / 1.6 + 2 * vw / 20}
-                        snapToAlignment="center"
-                        decelerationRate={"fast"}
-                        renderItem={({ item, index }) =>
-                            <Card contact={item} index={index} end={this.state.friendList.length - 1}
-                                selected={this.state.scrollIndex}
-                                userPhoto={contacts[index % 5]}
-                            />
-                        }
-                        onViewableItemsChanged={this.onViewableItemsChanged}
-                        keyExtractor={(item, index) => index.toString()}
-                        viewabilityConfig={{
-                            itemVisiblePercentThreshold: 50
-                        }}
-                    />
-                </View>
-                <View style={styles.tapsContainer}>
-                    <Text style={styles.title}>Taps</Text>
-                    <FlatList
-                        ref={this.taps}
-                        style={styles.taps}
-                        data={icons}
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        pagingEnabled
-                        snapToInterval={vw * 0.25 + 2 * vw / 20}
-                        snapToAlignment="center"
-                        decelerationRate={"fast"}
-                        renderItem={({ item, index }) =>
-                            <Emoticon emoticon={item} index={index} end={icons.length - 1}
-                                selected={this.state.selectedIcon} />
-                        }
-                        onViewableItemsChanged={this.onViewableItemsChanged2}
-                        keyExtractor={(item, index) => index.toString()}
-                        viewabilityConfig={{
-                            itemVisiblePercentThreshold: 100
-                        }}
-                    />
+                <View style={styles.main}>
+
+                    <View style={styles.contactsContainer}>
+                        <Text style={styles.title}>Recents</Text>
+                        <FlatList
+                            ref={this.recents}
+                            style={styles.cardList}
+                            data={this.state.data.friend_list}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            pagingEnabled
+                            snapToInterval={vw / 1.6 + 2 * vw / 20}
+                            snapToAlignment="center"
+                            decelerationRate={"fast"}
+                            renderItem={({ item, index }) =>
+                                <Card contact={item} index={index} end={this.state.data.friend_list.length - 1}
+                                    selected={this.state.scrollIndex}
+                                    userPhoto={contacts[index % 5]}
+                                />
+                            }
+                            onViewableItemsChanged={this.onViewableItemsChanged}
+                            keyExtractor={(item, index) => index.toString()}
+                            viewabilityConfig={{
+                                itemVisiblePercentThreshold: 50
+                            }}
+                        />
+                    </View>
+                    <View style={styles.tapsContainer}>
+                        <Text style={styles.title}>Taps</Text>
+                        <FlatList
+                            ref={this.taps}
+                            style={styles.taps}
+                            data={icons}
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                            pagingEnabled
+                            snapToInterval={vw * 0.25 + 2 * vw / 20}
+                            snapToAlignment="center"
+                            decelerationRate={"fast"}
+                            renderItem={({ item, index }) =>
+                                <Emoticon emoticon={item} index={index} end={icons.length - 1}
+                                    selected={this.state.selectedIcon} />
+                            }
+                            onViewableItemsChanged={this.onViewableItemsChanged2}
+                            keyExtractor={(item, index) => index.toString()}
+                            viewabilityConfig={{
+                                itemVisiblePercentThreshold: 100
+                            }}
+                        />
+                    </View>
                 </View>
                 <View style={styles.tabContainer}>
                     <View style={styles.iconContainer}>
@@ -118,7 +146,6 @@ export default class LandingScreen extends React.Component {
                     <View style={styles.iconContainer}>
                         <Image source={require("../assests/settings_icon.png")} />
                     </View>
-
                 </View>
             </View>
         );
@@ -130,6 +157,9 @@ const styles = StyleSheet.create({
     container: {
         height: vh,
         backgroundColor: "#121212"
+    },
+    main: {
+        height: vh * 0.85,
     },
     contactsContainer: {
         height: vh * 0.55,
