@@ -29,7 +29,6 @@ const icons = [
     [require('../assests/icon_5_1.png'), require('../assests/icon_5_2.png')]
 ]
 
-
 export default class LandingScreen extends React.Component {
     constructor({ navigation }) {
         super();
@@ -144,7 +143,9 @@ export default class LandingScreen extends React.Component {
                         </TouchableWithoutFeedback>
                     </View>
                     <View style={styles.iconContainer}>
-                        <Image source={require("../assests/settings_icon.png")} />
+                        <TouchableWithoutFeedback onPress={() => this.navigation.navigate("SettingsScreen")} >
+                            <Image source={require("../assests/settings_icon.png")} />
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
             </View>

@@ -8,7 +8,7 @@ import {
     StatusBar,
     Image,
     Text,
-    TouchableWithoutFeedback
+    TouchableOpacity
 } from 'react-native';
 
 import List from "../components/List";
@@ -63,18 +63,20 @@ export default class ContactsScreen extends React.Component {
                 </View>
                 <View style={styles.tabContainer}>
                     <View style={styles.iconContainer}>
-                        <Image source={require("../assests/home_icon.png")} />
+                        <TouchableOpacity onPress={() => this.navigation.navigate("LandingScreen")} >
+                            <Image source={require("../assests/home_icon.png")} />
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.iconContainer}>
-                        <TouchableWithoutFeedback onPress={() => this.navigation.navigate("ContactsScreen")} >
-                            <Image source={require("../assests/contacts_icon_selected.png")} />
-                        </TouchableWithoutFeedback>
+                        <Image source={require("../assests/contacts_icon_selected.png")} />
                     </View>
                     <View style={styles.iconContainer}>
-                        <Image source={require("../assests/settings_icon.png")} />
+                        <TouchableOpacity onPress={() => this.navigation.navigate("SettingsScreen")} >
+                            <Image source={require("../assests/settings_icon.png")} />
+                        </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </View >
         );
     };
 
