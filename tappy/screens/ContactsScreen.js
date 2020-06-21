@@ -1,4 +1,5 @@
 import React from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 import {
     StyleSheet,
     View,
@@ -9,8 +10,16 @@ import {
     Text,
     TouchableWithoutFeedback
 } from 'react-native';
+
+import List from "../components/List";
 const vw = Dimensions.get('window').width;
 const vh = Dimensions.get('window').height;
+
+const contacts = [require('../assests/user_photo_1.png'),
+require('../assests/user_photo_2.png'),
+require('../assests/user_photo_3.png'),
+require('../assests/user_photo_4.png'),
+require('../assests/user_photo_5.png')];
 export default class ContactsScreen extends React.Component {
     constructor({ navigation }) {
         super();
@@ -43,6 +52,14 @@ export default class ContactsScreen extends React.Component {
 
                 <View style={styles.contactsContainer}>
                     <Text style={styles.title}>Recents</Text>
+                    <FlatList
+                        data={this.state.data.friend_list}
+                        showsVertivalScrollIndicator={false}
+                        renderItem={({ item, index }) =>
+                            <List contact={item} userPhoto={contacts[index % 5]} />
+                        }
+                        keyExtractor={(item, index) => index.toString()}
+                    />
                 </View>
                 <View style={styles.tabContainer}>
                     <View style={styles.iconContainer}>
