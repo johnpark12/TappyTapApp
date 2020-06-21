@@ -32,15 +32,15 @@ export default class SettingsScreen extends React.Component {
                             <Image style={{ resizeMode: "cover", width: 80, height: 80 }} source={image} />
                         </View>
                     </View>
-                    <View style={{ flex: 0.4, position: "relative", top: 130, width: "100%" }}>
+                    <View style={{ flex: 0.4, position: "relative", top: 150, width: "100%" }}>
                         <SettingLine text="Account Settings" image="settings" />
                         <SettingLine text="Do Not Disturb" image="moon" />
                         <SettingLine text="Connect Facebook" image="facebook" />
                         <SettingLine text="Connect Instagram" image="instagram" />
                         <SettingLine text="About" image="help" />
-                        <View style={{ width: vw - 20, marginHorizontal: 10, marginTop: 30, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.5)" }}></View>
+                        <View style={{ width: vw - 20, marginHorizontal: 10, marginTop: 10, borderBottomWidth: 1, borderBottomColor: "rgba(255,255,255,0.5)" }}></View>
                     </View>
-                    <View style={{ position: "relative", top: 150, left: 20, flex: 0.5, zIndex: 20 }}>
+                    <View style={{ position: "relative", top: 170, left: 20, flex: 0.5, zIndex: 20 }}>
                         <Text style={{ fontSize: 20, color: "#EB5757" }}>Log Out</Text>
                     </View>
                 </View>
@@ -76,9 +76,13 @@ const styles = StyleSheet.create({
         // backgroundColor: "#ffffff"
     },
     tabContainer: {
+        width: vw,
         height: vh * 0.1,
         flexDirection: 'row',
         justifyContent: "space-evenly",
+        position: "absolute",
+        bottom:30,
+        zIndex:100
     },
     iconContainer: {
         flex: 1,
