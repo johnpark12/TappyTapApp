@@ -22,11 +22,11 @@ require('../assests/user_photo_4.png'),
 require('../assests/user_photo_5.png')];
 
 const icons = [
-    [require('../assests/icon_1_1.png'), require('../assests/icon_1_2.png')],
-    [require('../assests/icon_2_1.png'), require('../assests/icon_2_2.png')],
-    [require('../assests/icon_3_1.png'), require('../assests/icon_3_2.png')],
-    [require('../assests/icon_4_1.png'), require('../assests/icon_4_2.png')],
-    [require('../assests/icon_5_1.png'), require('../assests/icon_5_2.png')]
+    [require('../assests/icon_1_1.png'), require('../assests/icon_1_2.png'), "You are the star."],
+    [require('../assests/icon_2_1.png'), require('../assests/icon_2_2.png'), "Smile more."],
+    [require('../assests/icon_3_1.png'), require('../assests/icon_3_2.png'), "I am thinking about you"],
+    [require('../assests/icon_4_1.png'), require('../assests/icon_4_2.png'), "You are the best."],
+    [require('../assests/icon_5_1.png'), require('../assests/icon_5_2.png'), "Hey little sunshine."]
 ]
 
 export default class LandingScreen extends React.Component {
@@ -43,6 +43,8 @@ export default class LandingScreen extends React.Component {
         // this.storeData(data);
         this.getData();
     }
+
+    fetch
 
     storeData = async (value) => {
         try {
@@ -78,7 +80,7 @@ export default class LandingScreen extends React.Component {
 
 
     render() {
-
+        const text = icons[this.state.selectedIcon][2];
         return (
             <View style={styles.container}>
                 <StatusBar barStyle="light-content" backgroundColor="#121212" />
@@ -111,6 +113,7 @@ export default class LandingScreen extends React.Component {
                     </View>
                     <View style={styles.tapsContainer}>
                         <Text style={styles.title}>Taps</Text>
+
                         <FlatList
                             ref={this.taps}
                             style={styles.taps}
@@ -131,6 +134,8 @@ export default class LandingScreen extends React.Component {
                                 itemVisiblePercentThreshold: 100
                             }}
                         />
+                        <Text style={styles.messsge}>{text}</Text>
+
                     </View>
                 </View>
                 <View style={styles.tabContainer}>
@@ -163,10 +168,11 @@ const styles = StyleSheet.create({
         height: vh * 0.85,
     },
     contactsContainer: {
-        height: vh * 0.55,
+        height: vh * 0.5,
     },
     tapsContainer: {
-        justifyContent: "center"
+        justifyContent: "center",
+
     },
     taps: {
         height: vh * 0.2,
@@ -191,6 +197,11 @@ const styles = StyleSheet.create({
         fontFamily: 'roboto',
         fontStyle: 'normal',
         fontWeight: '900',
-        margin: vh / 35
+        margin: vh / 50
+    },
+    messsge: {
+        fontSize: 20,
+        color: "#ffffff",
+        textAlign: 'center'
     }
 });
