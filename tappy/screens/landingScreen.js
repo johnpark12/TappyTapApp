@@ -45,10 +45,6 @@ export default class LandingScreen extends React.Component {
         this.getData();
     }
 
-    componentDidMount() {
-        console.log(this.fetchData());
-    }
-
     fetchData = async () => {
         try {
             let response = await fetch(
