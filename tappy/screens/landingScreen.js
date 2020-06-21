@@ -41,15 +41,30 @@ export default class LandingScreen extends React.Component {
         };
         this.navigation = navigation;
         // this.storeData(data);
+        this.fetchData();
         this.getData();
     }
 
-    fetch
+    componentDidMount() {
+        console.log(this.fetchData());
+    }
+
+    fetchData = async () => {
+        try {
+            let response = await fetch(
+                'https://tappybee.azurewebsites.net/'
+            );
+            let json = await response.json();
+            this.storeData(json);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     storeData = async (value) => {
         try {
             const jsonValue = JSON.stringify(value)
-            //console.log(jsonValue);
+            console.log(jsonValue);
             await AsyncStorage.setItem('data', jsonValue)
         } catch (e) {
             console.log(e);
