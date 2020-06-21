@@ -25,12 +25,12 @@ export default class SettingLine extends React.Component {
     }
     render() {
         return (
-            <TouchableOpacity style={{ flex: 1, flexDirection: "row", paddingTop: 30 }}>
-                <Image style={{ position: "relative", top: 5, flex: 0.5, width: 20, height: 30, resizeMode: "contain" }} source={imageLib[this.link]} />
+            <TouchableOpacity style={{ flex: 1, flexDirection: "row", padding:5}}>
+                <Image style={{ position: "relative", flex: 0.5, width: 20, height: 30, resizeMode: "contain" }} source={imageLib[this.link]} />
                 <Text style={{ flex: 2, fontFamily: "Inter", fontSize: 22, color: "white" }}>
                     {this.props.text}
                 </Text>
-                <Image style={{ position: "relative", top: 5, right: -30, flex: 1, width: 20, height: 30, resizeMode: "contain" }} source={arrow} />
+                <Image style={{ position: "relative", top: 7, right: -30, flex: 1, width: 20, height: 20, resizeMode: "contain" }} source={arrow} />
             </TouchableOpacity>
         );
     };
