@@ -56,7 +56,6 @@ export default class LandingScreen extends React.Component {
             console.error(error);
         }
     }
-
     storeData = async (value) => {
         try {
             const jsonValue = JSON.stringify(value)
